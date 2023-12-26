@@ -1,0 +1,46 @@
+<h1 class="text-center pb-5">Lista de Matrículas Registradas</h1>
+<div class="list row justify-content-center">
+  <div class="col-md-6">
+    <div class="input-group mb-4">
+      <input type="text" class="form-control" placeholder="Ingrese dni del alumno matriculado" [(ngModel)]="dni" />
+      <div class="input-group-append">
+        <button class="btn btn-outline-secondary" type="button" (click)="searchByDni()">
+          Buscar
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-12">
+    <div class="input-group mb-4">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">Código</th>
+            <th scope="col">Alumno</th>
+            <th scope="col">DNI</th>
+            <th scope="col">Curso</th>
+            <th scope="col">Fecha de Inscripción</th>
+            <th scope="col">Acción</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let matricula of matriculas">
+            <th scope="row">{{ matricula.matricula_id }}</th>
+            <td>{{matricula.alumno?.apellidos}}, {{matricula.alumno?.nombres}}</td>
+            <td>{{ matricula.alumno?.dni }}</td>
+            <td>{{ matricula.curso?.nombre }}</td>
+            <td>{{ matricula.fecha_inscripcion }}</td>
+            <td>
+              <button class="btn btn-sm btn-warning" (click)="deleteMatricula(matricula.matricula_id)">
+                Eliminar
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <button class="btn btn-danger" (click)="deleteAllMatriculas()">
+      Eliminar Todas
+    </button>
+  </div>
